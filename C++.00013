@@ -1,0 +1,88 @@
+//wap c++ to implement hybrid inheritence wrt to the university examination system
+
+#include <iostream>
+#include <string>
+
+class Person {
+protected:
+    std::string name;
+    int age;
+
+public:
+    Person(std::string n, int a) {
+        name = n;
+        age = a;
+    }
+
+    void displayPersonInfo() {
+        std::cout << "Name: " << name << std::endl;
+        std::cout << "Age: " << age << std::endl;
+    }
+};
+
+class University {
+protected:
+    std::string universityName;
+    std::string location;
+
+public:
+    University(std::string un, std::string loc) {
+        universityName = un;
+        location = loc;
+    }
+
+    void displayUniversityInfo() {
+        std::cout << "University Name: " << universityName << std::endl;
+        std::cout << "Location: " << location << std::endl;
+    }
+};
+
+class Student : public Person, public University {
+private:
+    std::string rollNumber;
+    std::string course;
+
+public:
+    Student(std::string n, int a, std::string un, std::string loc, 
+            std::string rn, std::string c) 
+        : Person(n, a), University(un, loc) {
+        rollNumber = rn;
+        course = c;
+    }
+
+    void displayStudentInfo() {
+        displayPersonInfo();
+        displayUniversityInfo();
+        std::cout << "Roll Number: " << rollNumber << std::endl;
+        std::cout << "Course: " << course << std::endl;
+    }
+};
+
+class Exam : public Student {
+private:
+    std::string examDate;
+    std::string examTime;
+
+public:
+    Exam(std::string n, int a, std::string un, std::string loc, 
+         std::string rn, std::string c, std::string ed, std::string et) 
+        : Student(n, a, un, loc, rn, c) {
+        examDate = ed;
+        examTime = et;
+    }
+
+    void displayExamInfo() {
+        displayStudentInfo();
+        std::cout << "Exam Date: " << examDate << std::endl;
+        std::cout << "Exam Time: " << examTime << std::endl;
+    }
+};
+
+int main() {
+    Exam exam("John Doe", 20, "XYZ University", "New York", 
+              "S101", "B.Tech", "2024-05-01", "10:00 AM");
+
+    exam.displayExamInfo();
+
+    return 0;
+}
