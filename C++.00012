@@ -1,0 +1,68 @@
+//wap c++ to umplemnet multi level inheritence wrt student registration system
+
+#include <iostream>
+#include <string>
+class Person {
+protected:
+    std::string name;
+    int age;
+
+public:
+    Person(std::string n, int a) {
+        name = n;
+        age = a;
+    }
+
+    void displayPersonInfo() {
+        std::cout << "Name: " << name << std::endl;
+        std::cout << "Age: " << age << std::endl;
+    }
+};
+
+class Student : public Person {
+protected:
+    std::string rollNumber;
+    std::string course;
+
+public:
+    Student(std::string n, int a, std::string rn, std::string c) 
+        : Person(n, a) {
+        rollNumber = rn;
+        course = c;
+    }
+
+    void displayStudentInfo() {
+        displayPersonInfo();
+        std::cout << "Roll Number: " << rollNumber << std::endl;
+        std::cout << "Course: " << course << std::endl;
+    }
+};
+
+class RegisteredStudent : public Student {
+private:
+    std::string registrationDate;
+    std::string registrationNumber;
+
+public:
+    RegisteredStudent(std::string n, int a, std::string rn, std::string c, 
+                      std::string rd, std::string regNum) 
+        : Student(n, a, rn, c) {
+        registrationDate = rd;
+        registrationNumber = regNum;
+    }
+
+    void displayRegistrationInfo() {
+        displayStudentInfo();
+        std::cout << "Registration Date: " << registrationDate << std::endl;
+        std::cout << "Registration Number: " << registrationNumber << std::endl;
+    }
+};
+
+int main() {
+    RegisteredStudent student("John Doe", 20, "S101", "B.Tech", 
+                              "2022-01-01", "R101");
+
+    student.displayRegistrationInfo();
+
+    return 0;
+}
