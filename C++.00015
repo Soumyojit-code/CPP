@@ -1,0 +1,31 @@
+// empliment virtual function
+#include<iostream>
+using namespace std;
+class Base
+        {
+               public:
+
+                           void display() { cout<<"Display base "<<endl;}
+                           virtual void show() { cout<<"show base"<<endl;}
+
+        };
+class Drived : public Base
+{
+    void display(){ cout<<"Display Drive "<<endl;}
+     void show(){ cout<<"show base "<<endl;}
+};
+int main()
+{
+    Base b;
+    Drived d;
+    Base *ptr;
+    cout<<"*ptr pointer to base "<<endl;
+    ptr=&b;
+    ptr-> display();
+    ptr-> show();
+    cout<<"*ptr pointer to Drived "<<endl;
+    ptr=&d;
+    ptr-> display();
+    ptr-> show();
+return 0;
+}
